@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9DCB62FF2E96997C0067C360 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 9DCB62FE2E96997C0067C360 /* ComposableArchitecture */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		9DCB62DD2E9696CC0067C360 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DCB62FF2E96997C0067C360 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = SyncUps;
 			packageProductDependencies = (
+				9DCB62FE2E96997C0067C360 /* ComposableArchitecture */,
 			);
 			productName = SyncUps;
 			productReference = 9DCB62CC2E9696CA0067C360 /* SyncUps.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 9DCB62C32E9696CA0067C360;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				9DCB62FD2E96997C0067C360 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9DCB62CD2E9696CA0067C360 /* Products */;
 			projectDirPath = "";
@@ -329,6 +338,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -384,6 +394,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -552,6 +563,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9DCB62FD2E96997C0067C360 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.22.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9DCB62FE2E96997C0067C360 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9DCB62FD2E96997C0067C360 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9DCB62C42E9696CA0067C360 /* Project object */;
 }
