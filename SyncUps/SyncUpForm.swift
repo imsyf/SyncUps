@@ -12,7 +12,13 @@ import SwiftUI
 struct SyncUpForm {
     @ObservableState
     struct State: Equatable {
+        var focus: Field? = .title
         var syncUp: SyncUp
+    }
+    
+    enum Field: Hashable {
+        case attendee(Attendee.ID)
+        case title
     }
     
     enum Action: BindableAction {
@@ -27,9 +33,9 @@ struct SyncUpForm {
         Reduce { state, action in
             switch action {
             case .addAttendeeButtonTapped:
-                state.syncUp.attendees.append(
-                    Attendee(id: Attendee.ID())
-                )
+                let attendee = Attendee(id: Attendee.ID())
+                state.syncUp.attendees.append(attendee)
+                state.focus = .attendee(attendee.id)
                 return .none
 
             case .binding:
@@ -37,11 +43,17 @@ struct SyncUpForm {
                 
             case let .onDeleteAttendees(indices):
                 state.syncUp.attendees.remove(atOffsets: indices)
-                if state.syncUp.attendees.isEmpty {
+                guard
+                    !state.syncUp.attendees.isEmpty,
+                    let firstIndex = indices.first
+                else {
                     state.syncUp.attendees.append(
                         Attendee(id: Attendee.ID())
                     )
+                    return .none
                 }
+                let index = min(firstIndex, state.syncUp.attendees.count - 1)
+                state.focus = .attendee(state.syncUp.attendees[index].id)
                 return .none
             }
         }
@@ -50,6 +62,7 @@ struct SyncUpForm {
 
 struct SyncUpFormView: View {
     @Bindable var store: StoreOf<SyncUpForm>
+    @FocusState var focus: SyncUpForm.Field?
 
     var body: some View {
         Form {
@@ -82,6 +95,7 @@ struct SyncUpFormView: View {
                 Text("Attendees")
             }
         }
+        .bind($store.focus, to: $focus)
     }
 }
 
